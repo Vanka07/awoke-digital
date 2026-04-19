@@ -1,0 +1,692 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Awoke Digital — A specialist practice for enterprise systems.</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-96.png" sizes="96x96" type="image/png">
+<link rel="icon" href="/favicon-48.png" sizes="48x48" type="image/png">  
+<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="/favicon-16.png" sizes="16x16" type="image/png">
+<link rel="apple-touch-icon" href="/favicon-180.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --charcoal-900:#14181f;
+    --charcoal:#2d3748;
+    --silver:#718096;
+    --silver-300:#a0aec0;
+    --silver-100:#cbd5e0;
+    --blue:#3a8bd6;
+    --ivory:#f4f1e9;
+    --ivory-2:#ece7da;
+    --ink:#14181f;
+    --line:rgba(20,24,31,.14);
+    --line-strong:rgba(20,24,31,.3);
+  }
+  *{box-sizing:border-box;}
+  ::selection{background:var(--ink);color:var(--ivory);}
+  html{scroll-behavior:smooth;}
+  html,body{margin:0;padding:0;color:var(--ink);font-family:'Inter',system-ui,sans-serif;font-feature-settings:"ss01","ss02","cv11","liga","kern";-webkit-font-smoothing:antialiased;background:var(--ivory);overflow-x:hidden;}
+  body{font-size:15px;line-height:1.55;}
+  a{color:inherit;text-decoration:none;}
+
+  .serif{font-family:'Cormorant Garamond',serif;}
+  .mono{font-family:'JetBrains Mono',monospace;font-feature-settings:"tnum","zero";}
+
+  /* ====== PAPER GRAIN (subtle) ====== */
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:1;opacity:.35;mix-blend-mode:multiply;background-image:
+    radial-gradient(circle at 20% 30%, rgba(20,24,31,.012) 0.5px, transparent 1px),
+    radial-gradient(circle at 80% 70%, rgba(20,24,31,.015) 0.5px, transparent 1px),
+    radial-gradient(circle at 40% 80%, rgba(20,24,31,.01) 0.5px, transparent 1px);
+    background-size:4px 4px, 6px 6px, 8px 8px;}
+
+  /* ====== RUNNING MARGINALIA (fixed corners) ====== */
+  .margin{position:fixed;z-index:40;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--silver);pointer-events:none;mix-blend-mode:multiply;}
+  .margin.tl{top:24px;left:28px;}
+  .margin.tr{top:24px;right:28px;text-align:right;}
+  .margin.bl{bottom:24px;left:28px;line-height:1.9;}
+  .margin.br{bottom:24px;right:28px;text-align:right;line-height:1.9;}
+  .margin .d{color:var(--ink);}
+  .margin.white{color:rgba(244,241,233,.5);mix-blend-mode:normal;}
+  .margin.white .d{color:var(--ivory);}
+
+  /* ====== CHAPTER GUTTER ====== */
+  .chapter{position:relative;padding:0 28px;}
+  .chapter-inner{max-width:1400px;margin:0 auto;position:relative;padding:0 88px;}
+  @media (max-width:900px){ .chapter-inner{padding:0;} }
+
+  /* ====== COVER (hero) ====== */
+  .cover{min-height:100vh;position:relative;display:flex;flex-direction:column;}
+  .cover .top-bar{display:flex;justify-content:space-between;align-items:flex-end;padding:60px 88px 0;border-bottom:1px solid var(--line-strong);padding-bottom:20px;}
+  .cover .wordmark{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:500;letter-spacing:.04em;color:var(--ink);}
+  .cover .wordmark em{font-style:italic;color:var(--silver);font-weight:400;}
+  .cover .menu{display:flex;gap:40px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--silver);}
+  .cover .menu a{position:relative;transition:color .4s;}
+  .cover .menu a::after{content:"";position:absolute;left:0;bottom:-4px;width:0;height:1px;background:var(--ink);transition:width .45s cubic-bezier(.2,.8,.2,1);}
+  .cover .menu a:hover{color:var(--ink);}
+  .cover .menu a:hover::after{width:100%;}
+
+  .cover .stage{flex:1;display:grid;grid-template-columns:1fr 420px;gap:80px;padding:80px 88px 60px;align-items:end;}
+  .cover .stage .left{display:flex;flex-direction:column;justify-content:space-between;height:100%;}
+  .cover .folio{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--silver);display:flex;gap:14px;align-items:baseline;}
+  .cover .folio .idx{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:20px;letter-spacing:0;color:var(--ink);text-transform:none;}
+
+  .cover h1{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(64px, 10vw, 176px);letter-spacing:-.028em;line-height:.88;margin:0;color:var(--ink);max-width:14ch;font-feature-settings:"liga","dlig";}
+  .cover h1 .it{font-style:italic;color:var(--silver);font-weight:500;display:block;}
+
+  .cover .right{display:flex;flex-direction:column;justify-content:space-between;height:100%;align-items:flex-end;text-align:right;}
+  .cover .imprint{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;color:var(--silver);line-height:1.5;max-width:18ch;}
+  .cover .imprint strong{font-style:normal;color:var(--ink);font-weight:500;}
+  .cover .coord{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:var(--silver);line-height:2;}
+  .cover .coord .v{color:var(--ink);}
+
+  .cover .scroll-hint{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.3em;color:var(--silver);text-transform:uppercase;display:flex;align-items:center;gap:10px;}
+  .cover .scroll-hint .line{width:44px;height:1px;background:var(--silver);position:relative;overflow:hidden;}
+  .cover .scroll-hint .line::before{content:"";position:absolute;inset:0;background:var(--ink);transform:translateX(-100%);animation:draw 2.4s cubic-bezier(.5,0,.2,1) infinite;}
+  @keyframes draw{0%{transform:translateX(-100%)}50%{transform:translateX(0)}100%{transform:translateX(100%)}}
+
+  /* ====== CONTENTS (TOC) ====== */
+  .contents{padding:140px 88px 120px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .contents .row{display:grid;grid-template-columns:180px 1fr;gap:80px;}
+  .contents .lbl{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.25em;text-transform:uppercase;color:var(--silver);padding-top:12px;}
+  .contents ol{list-style:none;padding:0;margin:0;counter-reset:toc;}
+  .contents ol li{counter-increment:toc;display:grid;grid-template-columns:60px 1fr auto;gap:28px;align-items:baseline;padding:26px 0;border-bottom:1px solid var(--line);cursor:pointer;transition:padding .4s cubic-bezier(.2,.8,.2,1);}
+  .contents ol li:hover{padding-left:14px;}
+  .contents ol li::before{content:counter(toc, upper-roman) ".";font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;font-size:22px;color:var(--silver);transition:color .4s;}
+  .contents ol li:hover::before{color:var(--ink);}
+  .contents ol li .t{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:36px;letter-spacing:-.012em;color:var(--ink);line-height:1.1;}
+  .contents ol li .t em{font-style:italic;color:var(--silver);font-weight:500;}
+  .contents ol li .pg{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.15em;color:var(--silver);}
+
+  /* ====== MANIFESTO ====== */
+  .manifesto{padding:160px 88px;border-bottom:1px solid var(--line);}
+  .manifesto .chapter-mark{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--silver);margin-bottom:80px;display:flex;gap:18px;align-items:baseline;}
+  .manifesto .chapter-mark .num{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:26px;color:var(--ink);letter-spacing:0;text-transform:none;font-weight:500;}
+  .manifesto .body{max-width:1040px;margin:0 auto;text-align:center;}
+  .manifesto p.lead{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(34px, 4.4vw, 62px);line-height:1.22;letter-spacing:-.015em;color:var(--ink);margin:0;}
+  .manifesto p.lead em{font-style:italic;color:var(--silver);font-weight:500;}
+  .manifesto p.lead .in{color:var(--blue);font-style:italic;}
+  .manifesto .sig{margin-top:80px;display:flex;justify-content:space-between;align-items:flex-end;max-width:1040px;margin-left:auto;margin-right:auto;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:var(--silver);}
+  .manifesto .sig .mid{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:16px;color:var(--ink);letter-spacing:0;text-transform:none;}
+
+  /* ====== PRACTICE (services) ====== */
+  .practice{padding:160px 0;border-bottom:1px solid var(--line);}
+  .practice .head{display:grid;grid-template-columns:240px 1fr;gap:80px;padding:0 88px;margin-bottom:100px;align-items:flex-end;}
+  .practice .mark{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--silver);}
+  .practice .mark .num{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:26px;color:var(--ink);letter-spacing:0;text-transform:none;font-weight:500;display:block;margin-bottom:14px;}
+  .practice h2{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(44px, 5vw, 78px);letter-spacing:-.018em;line-height:1;margin:0;color:var(--ink);}
+  .practice h2 em{font-style:italic;color:var(--silver);font-weight:500;}
+
+  .practice .rows{border-top:1px solid var(--line-strong);}
+  .pr-row{display:grid;grid-template-columns:140px 1fr 380px 60px;gap:48px;padding:56px 88px;border-bottom:1px solid var(--line);align-items:flex-start;transition:background .6s ease,padding .5s cubic-bezier(.2,.8,.2,1);cursor:pointer;position:relative;}
+  .pr-row:hover{background:var(--ivory-2);}
+  .pr-row .n{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.25em;color:var(--silver);padding-top:10px;}
+  .pr-row .t{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(36px, 3.6vw, 58px);letter-spacing:-.016em;line-height:1;margin:0;color:var(--ink);}
+  .pr-row .t em{font-style:italic;color:var(--silver);font-weight:500;}
+  .pr-row .d{font-size:14.5px;line-height:1.7;color:var(--ink);opacity:.78;}
+  .pr-row .d .under{display:flex;flex-direction:column;gap:4px;margin-top:20px;padding-top:18px;border-top:1px solid var(--line);}
+  .pr-row .d .under span{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--silver);}
+  .pr-row .arr{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:24px;color:var(--silver);padding-top:10px;transition:transform .5s cubic-bezier(.2,.8,.2,1),color .4s;}
+  .pr-row:hover .arr{transform:translateX(16px);color:var(--ink);}
+
+  /* ====== DOSSIER (case study — full charcoal moment) ====== */
+  .dossier{background:var(--charcoal-900);color:var(--ivory);padding:160px 0 160px;position:relative;overflow:hidden;border-bottom:1px solid rgba(244,241,233,.1);}
+  .dossier::before{content:"";position:absolute;inset:0;background:radial-gradient(110% 70% at 100% 0%, rgba(113,128,150,.16), transparent 60%);pointer-events:none;}
+  .dossier .head{display:grid;grid-template-columns:240px 1fr;gap:80px;padding:0 88px;margin-bottom:80px;align-items:flex-end;position:relative;z-index:1;}
+  .dossier .mark{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--silver-300);}
+  .dossier .mark .num{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:26px;color:var(--ivory);letter-spacing:0;text-transform:none;font-weight:500;display:block;margin-bottom:14px;}
+  .dossier h2{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(44px, 5vw, 78px);letter-spacing:-.018em;line-height:1;margin:0;color:var(--ivory);}
+  .dossier h2 em{font-style:italic;color:var(--silver-300);font-weight:500;}
+
+  .dossier .case{padding:0 88px;display:grid;grid-template-columns:1fr 1fr;gap:80px;position:relative;z-index:1;}
+  .dossier .visual{position:relative;aspect-ratio:5/6;border:1px solid rgba(244,241,233,.14);overflow:hidden;display:flex;align-items:center;justify-content:center;padding:56px;}
+  .dossier .visual::before{content:"";position:absolute;top:0;left:0;right:0;height:32px;background:repeating-linear-gradient(90deg, #f4f1e9 0 24px, #14181f 24px 48px);opacity:.8;}
+  .dossier .visual .folio{position:absolute;top:52px;left:20px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.25em;color:var(--silver-300);text-transform:uppercase;}
+  .dossier .visual .cls{position:absolute;top:52px;right:20px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.25em;color:#d99058;border:1px solid #d99058;padding:2px 8px;}
+  .dossier .visual svg{width:100%;max-width:420px;position:relative;z-index:1;margin-top:40px;}
+  .dossier .meta{display:flex;flex-direction:column;justify-content:space-between;padding:20px 0;}
+  .dossier .meta .engage{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--silver-300);margin-bottom:36px;}
+  .dossier .meta h3{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(38px, 3.8vw, 58px);line-height:1.06;letter-spacing:-.015em;margin:0 0 28px;color:var(--ivory);}
+  .dossier .meta h3 em{font-style:italic;color:var(--silver-300);font-weight:500;}
+  .dossier .meta .note{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:20px;line-height:1.6;color:var(--silver-300);margin:0 0 48px;max-width:42ch;}
+  .dossier .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;padding-top:40px;border-top:1px solid rgba(244,241,233,.16);}
+  .dossier .stats .s .n{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:56px;letter-spacing:-.02em;line-height:1;color:var(--ivory);font-variant-numeric:tabular-nums;}
+  .dossier .stats .s .n em{font-style:italic;color:var(--silver-300);font-weight:500;}
+  .dossier .stats .s .l{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--silver-300);margin-top:12px;line-height:1.5;}
+
+  .dossier .run{padding:80px 88px 0;display:flex;justify-content:space-between;align-items:center;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:var(--silver);position:relative;z-index:1;}
+
+  /* ====== METHOD (4 phases, vertical track) ====== */
+  .method{padding:160px 88px;border-bottom:1px solid var(--line);}
+  .method .head{display:grid;grid-template-columns:240px 1fr;gap:80px;margin-bottom:80px;align-items:flex-end;}
+  .method h2{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(44px, 5vw, 78px);letter-spacing:-.018em;line-height:1;margin:0;color:var(--ink);}
+  .method h2 em{font-style:italic;color:var(--silver);font-weight:500;}
+  .method .mark{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--silver);}
+  .method .mark .num{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:26px;color:var(--ink);letter-spacing:0;text-transform:none;font-weight:500;display:block;margin-bottom:14px;}
+  .method .phases{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--line-strong);border-left:1px solid var(--line);}
+  .phase{padding:44px 32px 56px;border-right:1px solid var(--line);position:relative;min-height:340px;display:flex;flex-direction:column;}
+  .phase:last-child{border-right:1px solid var(--line);}
+  .phase .k{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:var(--silver);margin-bottom:24px;display:flex;justify-content:space-between;}
+  .phase .k .w{color:var(--ink);}
+  .phase h4{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:38px;letter-spacing:-.012em;line-height:1;margin:0 0 24px;color:var(--ink);}
+  .phase h4 em{font-style:italic;color:var(--silver);font-weight:500;}
+  .phase p{font-size:14.5px;line-height:1.7;color:var(--ink);opacity:.78;margin:0;}
+  .phase::before{content:"";position:absolute;left:32px;right:32px;top:102px;height:1px;background:var(--blue);width:32px;transition:width .8s cubic-bezier(.2,.8,.2,1);}
+  .phase:hover::before{width:calc(100% - 64px);}
+
+  /* ====== VOICE (testimonial) ====== */
+  .voice{padding:180px 88px;border-bottom:1px solid var(--line);text-align:center;}
+  .voice .mark{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--silver);margin-bottom:56px;display:flex;justify-content:center;gap:18px;align-items:baseline;}
+  .voice .mark .num{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:26px;color:var(--ink);letter-spacing:0;text-transform:none;font-weight:500;}
+  .voice blockquote{max-width:980px;margin:0 auto;font-family:'Cormorant Garamond',serif;font-weight:500;font-style:italic;font-size:clamp(30px, 3.6vw, 52px);line-height:1.26;letter-spacing:-.012em;color:var(--ink);position:relative;}
+  .voice blockquote::before{content:"\201C";position:absolute;top:-80px;left:50%;transform:translateX(-50%);font-size:180px;color:var(--silver);opacity:.18;font-weight:400;line-height:1;font-style:normal;}
+  .voice blockquote em{font-style:normal;color:var(--silver);}
+  .voice .attribution{margin-top:48px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.25em;text-transform:uppercase;color:var(--silver);}
+  .voice .attribution .n{color:var(--ink);}
+
+  /* ====== COLOPHON + CONTACT ====== */
+  .close{padding:160px 88px 120px;}
+  .close-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:120px;align-items:end;margin-bottom:100px;}
+  .close .mark{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--silver);margin-bottom:36px;display:flex;gap:18px;align-items:baseline;}
+  .close .mark .num{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:26px;color:var(--ink);letter-spacing:0;text-transform:none;font-weight:500;}
+  .close h2{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(56px, 7vw, 120px);letter-spacing:-.025em;line-height:.95;margin:0 0 40px;color:var(--ink);}
+  .close h2 em{font-style:italic;color:var(--silver);font-weight:500;display:block;}
+  .close .email{display:inline-flex;align-items:baseline;gap:22px;padding:0;font-family:'Cormorant Garamond',serif;font-weight:500;font-size:36px;color:var(--ink);border-bottom:1px solid var(--ink);padding-bottom:12px;transition:color .4s;}
+  .close .email:hover{color:var(--blue);border-color:var(--blue);}
+  .close .email .arr{font-style:italic;font-size:28px;color:var(--silver);transition:transform .5s cubic-bezier(.2,.8,.2,1);}
+  .close .email:hover .arr{transform:translateX(10px);color:var(--blue);}
+
+  .close .right{display:flex;flex-direction:column;gap:36px;}
+  .close .dl{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.2em;}
+  .close .dl .k{text-transform:uppercase;color:var(--silver);margin-bottom:8px;letter-spacing:.28em;font-size:10px;}
+  .close .dl .v{color:var(--ink);font-family:'Cormorant Garamond',serif;font-style:italic;font-size:20px;letter-spacing:0;font-weight:500;text-transform:none;line-height:1.4;}
+
+  .colophon{border-top:1px solid var(--line-strong);padding-top:48px;display:grid;grid-template-columns:repeat(4,1fr);gap:40px;}
+  .colophon .c{}
+  .colophon .c h6{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--silver);margin:0 0 14px;font-weight:500;}
+  .colophon .c p{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:16px;line-height:1.55;color:var(--ink);margin:0;}
+  .colophon .c p.mono{font-family:'JetBrains Mono',monospace;font-style:normal;font-size:11px;letter-spacing:.08em;line-height:1.8;}
+
+  /* ====== IMPRINT (true footer) ====== */
+  .imprint-bar{padding:40px 88px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:var(--silver);}
+
+  /* ====== SCROLL PROGRESS ====== */
+  #progress{position:fixed;top:0;left:0;height:1px;background:var(--ink);width:0;z-index:45;transition:width .1s linear;}
+
+  /* ====== TWEAKS ====== */
+  #tweaks{position:fixed;bottom:20px;right:20px;width:280px;background:#fff;border:1px solid var(--line);border-radius:2px;box-shadow:0 20px 50px -20px rgba(0,0,0,.3);padding:18px;z-index:100;display:none;font-size:12px;}
+  #tweaks.open{display:block;}
+  #tweaks h6{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--silver);margin:0 0 14px;font-weight:500;}
+  #tweaks .row{display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--line);}
+  #tweaks .row:last-child{border-bottom:none;}
+  #tweaks label{color:var(--ink);font-weight:500;font-size:11px;}
+  #tweaks .seg{display:flex;gap:2px;background:var(--ivory-2);border-radius:2px;padding:2px;}
+  #tweaks .seg button{background:transparent;border:none;padding:5px 10px;font-size:10px;font-family:'JetBrains Mono',monospace;color:var(--ink);cursor:pointer;border-radius:1px;text-transform:uppercase;letter-spacing:.1em;font-weight:500;}
+  #tweaks .seg button.on{background:var(--ink);color:var(--ivory);}
+
+  /* ====== REVEAL ON SCROLL ====== */
+  .reveal{opacity:0;transform:translateY(16px);transition:opacity 1s cubic-bezier(.2,.8,.2,1), transform 1s cubic-bezier(.2,.8,.2,1);}
+  .reveal.in{opacity:1;transform:translateY(0);}
+
+  /* ====== RESPONSIVE ====== */
+  @media (max-width:1100px){
+    .cover .top-bar{padding:36px 28px 16px;}
+    .cover .stage{grid-template-columns:1fr;padding:56px 28px;gap:60px;}
+    .cover .right{align-items:flex-start;text-align:left;}
+    .cover .menu{display:none;}
+    .contents{padding:80px 28px;}
+    .contents .row{grid-template-columns:1fr;gap:32px;}
+    .contents ol li .t{font-size:26px;}
+    .manifesto, .method, .voice, .close, .practice .head, .dossier .head, .dossier .case, .dossier .run, .method .head{padding-left:28px;padding-right:28px;}
+    .practice .head, .dossier .head, .method .head, .close-grid{grid-template-columns:1fr;gap:28px;}
+    .pr-row{grid-template-columns:60px 1fr;gap:20px;padding:32px 28px;}
+    .pr-row .d, .pr-row .arr{grid-column:1 / -1;}
+    .dossier .case{grid-template-columns:1fr;gap:48px;}
+    .method .phases{grid-template-columns:1fr 1fr;}
+    .colophon{grid-template-columns:1fr 1fr;gap:28px;}
+    .margin.tr, .margin.br{display:none;}
+    .imprint-bar{padding:28px;flex-direction:column;gap:12px;align-items:flex-start;}
+  }
+</style>
+</head>
+<body data-tone="editorial">
+
+  <div id="progress"></div>
+
+  <!-- Running marginalia -->
+  <div class="margin tl" id="margin-tl">Awoke Digital <span class="d">· LLC</span></div>
+  <div class="margin tr" id="margin-tr">№ <span class="d">001</span> — Portfolio · mmxxvi</div>
+  <div class="margin bl">Dallas <span class="d">· TX</span><br/>32.7767° N · 96.7970° W</div>
+  <div class="margin br" id="running-folio">Cover<br/>— <span class="d" id="folio-pct">0%</span></div>
+
+  <!-- ================ COVER ================ -->
+  <section class="cover" data-chapter="Cover" data-pct="5">
+    <div class="top-bar">
+      <div class="wordmark">Awoke Digital<em> · LLC</em></div>
+      <nav class="menu">
+        <a href="#contents">Contents</a>
+        <a href="#practice">Practice</a>
+        <a href="#dossier">Dossier</a>
+        <a href="#method">Method</a>
+        <a href="#close">Correspond</a>
+      </nav>
+    </div>
+
+    <div class="stage">
+      <div class="left">
+        <div class="folio"><span class="idx">i.</span> Cover · Portfolio &amp; Practice · Volume One</div>
+        <h1>
+          A specialist<br/>
+          practice for<br/>
+          <span class="it">enterprise systems.</span>
+        </h1>
+      </div>
+      <div class="right">
+        <div class="imprint">
+          For the <strong>operators</strong>,<br/>
+          <strong>architects</strong>, and<br/>
+          <strong>in-house teams</strong> who<br/>
+          carry the consequences.
+        </div>
+        <div class="coord">
+          Est · <span class="v">mmxxvi</span><br/>
+          Base · <span class="v">Dallas, TX</span><br/>
+          Focus · <span class="v">ServiceNow / Cloud</span><br/>
+          Practitioner · <span class="v">Jamiu Awoke</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="scroll-hint">Begin<span class="line"></span>01</div>
+  </section>
+
+  <!-- ================ CONTENTS ================ -->
+  <section class="contents" id="contents" data-chapter="Contents" data-pct="12">
+    <div class="row">
+      <div class="lbl">Table of Contents</div>
+      <ol>
+        <li data-goto="#manifesto"><span class="t">A note on <em>how we work.</em></span><span class="pg">p. 03</span></li>
+        <li data-goto="#practice"><span class="t">The practice — <em>three disciplines.</em></span><span class="pg">p. 07</span></li>
+        <li data-goto="#dossier"><span class="t">Dossier — <em>a carrier consolidation.</em></span><span class="pg">p. 14</span></li>
+        <li data-goto="#method"><span class="t">Method — <em>four phases, no drift.</em></span><span class="pg">p. 22</span></li>
+        <li data-goto="#voice"><span class="t">Voice — <em>a client, on record.</em></span><span class="pg">p. 28</span></li>
+        <li data-goto="#close"><span class="t">Correspond — <em>a note to return.</em></span><span class="pg">p. 31</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ================ MANIFESTO ================ -->
+  <section class="manifesto" id="manifesto" data-chapter="Manifesto" data-pct="22">
+    <div class="chapter-mark">Chapter <span class="num">I.</span> A note on how we work</div>
+    <div class="body">
+      <p class="lead reveal">
+        We are not a large firm. We are not an endless deck of blurred slides.
+        We do <em>three things well</em>, we do them for teams that <em>cannot afford failure</em>,
+        and we leave when <span class="in">you are ready</span> — not when the budget runs out.
+      </p>
+    </div>
+    <div class="sig">
+      <span>Awoke Digital · LLC</span>
+      <span class="mid">— Jamiu Awoke, Principal</span>
+      <span>Dallas · MMXXVI</span>
+    </div>
+  </section>
+
+  <!-- ================ PRACTICE ================ -->
+  <section class="practice" id="practice" data-chapter="Practice" data-pct="40">
+    <div class="head">
+      <div class="mark">Chapter <span class="num">II.</span> The practice</div>
+      <h2>Three disciplines, <em>held to one standard.</em></h2>
+    </div>
+
+    <div class="rows">
+      <div class="pr-row reveal">
+        <div class="n">I · 2018—</div>
+        <h3 class="t">ServiceNow <em>development</em></h3>
+        <div class="d">
+          End-to-end platform engineering. Workflows designed for the operators who use them, extended beyond ITSM into HR, security, and customer ops — with the discipline of someone who has cleaned up other people's instances.
+          <div class="under">
+            <span>Workflow architecture · Flow Designer</span>
+            <span>Custom scripting · Integration</span>
+            <span>Instance consolidation · Migration</span>
+          </div>
+        </div>
+        <span class="arr">—&nbsp;→</span>
+      </div>
+
+      <div class="pr-row reveal">
+        <div class="n">II · 2020—</div>
+        <h3 class="t">Cloud <em>architecture</em></h3>
+        <div class="d">
+          AWS, Azure, GCP — designed with security, observability, and cost discipline from the first whiteboard. We migrate the workloads the internal team keeps putting off, and leave infrastructure the team can operate without us.
+          <div class="under">
+            <span>Landing zones · Infrastructure-as-code</span>
+            <span>Migration · Modernization</span>
+            <span>FinOps · Cost governance</span>
+          </div>
+        </div>
+        <span class="arr">—&nbsp;→</span>
+      </div>
+
+      <div class="pr-row reveal">
+        <div class="n">III · 2022—</div>
+        <h3 class="t">Digital <em>transformation</em></h3>
+        <div class="d">
+          Process mapping, system consolidation, and change management for organisations whose legacy systems have outlived their usefulness. We lead from whiteboard to go-live, and we don't pretend the hard part is the technology.
+          <div class="under">
+            <span>Discovery · Roadmapping</span>
+            <span>Vendor selection · RFP</span>
+            <span>Adoption · Enablement</span>
+          </div>
+        </div>
+        <span class="arr">—&nbsp;→</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================ DOSSIER ================ -->
+  <section class="dossier" id="dossier" data-chapter="Dossier" data-pct="60">
+    <div class="head">
+      <div class="mark">Chapter <span class="num">III.</span> Dossier · A selected engagement</div>
+      <h2>From three ServiceNow instances <em>to one shared platform.</em></h2>
+    </div>
+
+    <div class="case">
+      <div class="visual">
+        <div class="folio">FILE 001 · 2025</div>
+        <div class="cls">RESOLVED</div>
+        <svg viewBox="0 0 400 360" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="ln" x1="0" x2="1" y1="0" y2="0">
+              <stop offset="0%" stop-color="#3a8bd6" stop-opacity="0"/>
+              <stop offset="100%" stop-color="#3a8bd6" stop-opacity="1"/>
+            </linearGradient>
+          </defs>
+          <g stroke="rgba(160,174,192,.14)" stroke-width="0.5">
+            <line x1="0" y1="60" x2="400" y2="60"/>
+            <line x1="0" y1="130" x2="400" y2="130"/>
+            <line x1="0" y1="200" x2="400" y2="200"/>
+            <line x1="0" y1="270" x2="400" y2="270"/>
+          </g>
+          <!-- before -->
+          <path d="M10 100 L80 120 L160 170 L240 200 L320 230 L390 250" fill="none" stroke="#a0aec0" stroke-width="1" stroke-dasharray="3 5"/>
+          <!-- after -->
+          <path d="M10 270 L80 220 L160 170 L240 110 L320 70 L390 40" fill="none" stroke="url(#ln)" stroke-width="2"/>
+          <g fill="#3a8bd6">
+            <circle cx="10" cy="270" r="2.5"/><circle cx="80" cy="220" r="2.5"/>
+            <circle cx="160" cy="170" r="2.5"/><circle cx="240" cy="110" r="2.5"/>
+            <circle cx="320" cy="70" r="2.5"/><circle cx="390" cy="40" r="3.5"/>
+          </g>
+          <g font-family="JetBrains Mono,monospace" font-size="9" fill="#a0aec0" letter-spacing="2">
+            <text x="10" y="320">Q1</text><text x="80" y="320">Q2</text>
+            <text x="160" y="320">Q3</text><text x="240" y="320">Q4</text>
+            <text x="320" y="320">Q5</text><text x="380" y="320">Q6</text>
+          </g>
+          <g font-family="Cormorant Garamond,serif" font-style="italic" font-size="13" fill="#a0aec0">
+            <text x="10" y="50">Incident resolution, post-consolidation</text>
+          </g>
+        </svg>
+      </div>
+
+      <div class="meta">
+        <div>
+          <div class="engage">Engagement · Carrier Operations · 14 weeks</div>
+          <h3>Three instances, <em>one platform,</em> 180 workflows migrated.</h3>
+          <p class="note">A North American carrier ran three disconnected ServiceNow instances across its regional business units — duplicate catalogs, inconsistent incident SLAs, no shared reporting. We designed the consolidation, migrated the custom work, retired two legacy instances, and handed the operators a single shared platform.</p>
+        </div>
+        <div class="stats">
+          <div class="s"><div class="n"><em>−</em>42<em>%</em></div><div class="l">Mean resolution time</div></div>
+          <div class="s"><div class="n">180<em>+</em></div><div class="l">Custom workflows migrated</div></div>
+          <div class="s"><div class="n">14<em>w</em></div><div class="l">Discovery to go-live</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="run">
+      <span>Dossier · File 001</span>
+      <span>— More engagements available on request —</span>
+      <span>03 / 06</span>
+    </div>
+  </section>
+
+  <!-- ================ METHOD ================ -->
+  <section class="method" id="method" data-chapter="Method" data-pct="75">
+    <div class="head">
+      <div class="mark">Chapter <span class="num">IV.</span> Method</div>
+      <h2>Four phases. <em>No drift.</em></h2>
+    </div>
+    <div class="phases">
+      <div class="phase">
+        <div class="k"><span>Phase 01</span><span class="w">14 days</span></div>
+        <h4>Discover</h4>
+        <p>Two-week audit of current systems, ownership, and pain. Findings delivered as a written brief — not a deck.</p>
+      </div>
+      <div class="phase">
+        <div class="k"><span>Phase 02</span><span class="w">10 days</span></div>
+        <h4>Architect</h4>
+        <p>Technical design reviewed with your team. Scope, risk, and acceptance criteria locked before any code ships.</p>
+      </div>
+      <div class="phase">
+        <div class="k"><span>Phase 03</span><span class="w">6—14 weeks</span></div>
+        <h4>Build</h4>
+        <p>Delivery in two-week increments. Weekly demos, visible metrics, a shared backlog auditable at any moment.</p>
+      </div>
+      <div class="phase">
+        <div class="k"><span>Phase 04</span><span class="w">30 days</span></div>
+        <h4>Transition</h4>
+        <p>Runbooks, training, a 30-day handover to your internal team. We leave when you are ready — not when the budget runs out.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================ VOICE ================ -->
+  <section class="voice" id="voice" data-chapter="Voice" data-pct="87">
+    <div class="mark">Chapter <span class="num">V.</span> Voice · A client, on record</div>
+    <blockquote>
+      Awoke delivered what three previous vendors promised and never finished.
+      <em>The difference was discipline</em> — clear scope, weekly visibility,
+      and an honest handover to our internal team.
+    </blockquote>
+    <div class="attribution">
+      <span class="n">M. Rodriguez</span> &nbsp;·&nbsp; VP Technology &nbsp;·&nbsp; Regional Carrier (on file)
+    </div>
+  </section>
+
+  <!-- ================ CLOSE ================ -->
+  <section class="close" id="close" data-chapter="Correspond" data-pct="96">
+    <div class="close-grid">
+      <div>
+        <div class="mark">Chapter <span class="num">VI.</span> Correspond</div>
+        <h2>Write.<em>We read every one.</em></h2>
+        <a href="mailto:hello@awokedigital.com" class="email">
+          hello@awokedigital.com
+          <span class="arr">—&nbsp;→</span>
+        </a>
+      </div>
+      <div class="right">
+        <div class="dl">
+          <div class="k">Practice</div>
+          <div class="v">Jamiu Awoke<br/>Principal &amp; Founder</div>
+        </div>
+        <div class="dl">
+          <div class="k">Correspondence</div>
+          <div class="v">+1 (214) 207-0261<br/>Mon — Fri · 9h—18h CT</div>
+        </div>
+        <div class="dl">
+          <div class="k">Studio</div>
+          <div class="v">Dallas, Texas<br/>Visits by appointment</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="colophon">
+      <div class="c">
+        <h6>Colophon</h6>
+        <p>Set in Cormorant Garamond and Inter, with JetBrains Mono for particulars. Composed in Dallas.</p>
+      </div>
+      <div class="c">
+        <h6>Papers</h6>
+        <p>Charcoal &amp; Ivory. Designed for print and for screen in identical hand.</p>
+      </div>
+      <div class="c">
+        <h6>Edition</h6>
+        <p class="mono">Vol. I<br/>MMXXVI<br/>№ 001</p>
+      </div>
+      <div class="c">
+        <h6>Rights</h6>
+        <p class="mono">© 2026<br/>Awoke Digital LLC<br/>All rights reserved</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="imprint-bar">
+    <span>Awoke Digital · LLC — Est. mmxxvi · Dallas, TX</span>
+    <span>Enterprise solutions · Proven results</span>
+    <span><a href="mailto:hello@awokedigital.com">hello@awokedigital.com</a> · +1 214 207 0261</span>
+  </div>
+
+  <!-- ================ TWEAKS ================ -->
+  <div id="tweaks">
+    <h6>Tweaks</h6>
+    <div class="row">
+      <label>Hero</label>
+      <div class="seg" data-key="hero">
+        <button data-val="specialist">Specialist</button>
+        <button data-val="proven">Proven</button>
+        <button data-val="quiet">Quiet</button>
+      </div>
+    </div>
+    <div class="row">
+      <label>Ink</label>
+      <div class="seg" data-key="ink">
+        <button data-val="charcoal">Charcoal</button>
+        <button data-val="midnight">Midnight</button>
+        <button data-val="espresso">Espresso</button>
+      </div>
+    </div>
+    <div class="row">
+      <label>Accent</label>
+      <div class="seg" data-key="accent">
+        <button data-val="blue">Blue</button>
+        <button data-val="amber">Amber</button>
+        <button data-val="sage">Sage</button>
+      </div>
+    </div>
+  </div>
+
+<script>
+  const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+    "hero": "specialist",
+    "ink": "charcoal",
+    "accent": "blue"
+  }/*EDITMODE-END*/;
+
+  const HEROES = {
+    specialist: ['A specialist','practice for','enterprise systems.'],
+    proven:     ['Enterprise','solutions.','Proven results.'],
+    quiet:      ['The work is','quiet.','The results speak.']
+  };
+  const INKS = {
+    charcoal:  {'--ink':'#14181f','--charcoal':'#2d3748','--charcoal-900':'#14181f'},
+    midnight:  {'--ink':'#0d1628','--charcoal':'#1a2b48','--charcoal-900':'#0d1628'},
+    espresso:  {'--ink':'#1f1612','--charcoal':'#362821','--charcoal-900':'#1f1612'}
+  };
+  const ACCENTS = {
+    blue:  '#3a8bd6',
+    amber: '#c9a15a',
+    sage:  '#7a9a6a'
+  };
+
+  const state = {...TWEAK_DEFAULTS};
+
+  function apply(){
+    // Hero headline
+    const h1 = document.querySelector('.cover h1');
+    const [a,b,c] = HEROES[state.hero] || HEROES.specialist;
+    h1.innerHTML = `${a}<br/>${b}<br/><span class="it">${c}</span>`;
+
+    // Ink
+    const ink = INKS[state.ink] || INKS.charcoal;
+    Object.entries(ink).forEach(([k,v])=>document.documentElement.style.setProperty(k,v));
+
+    // Accent
+    document.documentElement.style.setProperty('--blue', ACCENTS[state.accent] || ACCENTS.blue);
+
+    // Button states
+    document.querySelectorAll('#tweaks .seg').forEach(seg=>{
+      const k = seg.dataset.key;
+      seg.querySelectorAll('button').forEach(b=>b.classList.toggle('on', b.dataset.val === state[k]));
+    });
+  }
+
+  // Tweak wiring
+  document.querySelectorAll('#tweaks .seg button').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const key = btn.parentElement.dataset.key;
+      state[key] = btn.dataset.val;
+      apply();
+      window.parent.postMessage({type:'__edit_mode_set_keys', edits:{[key]: state[key]}}, '*');
+    });
+  });
+
+  // Host activation
+  window.addEventListener('message', e=>{
+    const {type} = e.data || {};
+    if (type === '__activate_edit_mode') document.getElementById('tweaks').classList.add('open');
+    if (type === '__deactivate_edit_mode') document.getElementById('tweaks').classList.remove('open');
+  });
+
+  // TOC click
+  document.querySelectorAll('.contents ol li').forEach(li=>{
+    li.addEventListener('click', ()=>{
+      const target = document.querySelector(li.dataset.goto);
+      if (target) target.scrollIntoView({behavior:'smooth', block:'start'});
+    });
+  });
+
+  // Scroll progress + running folio
+  const progress = document.getElementById('progress');
+  const folioPct = document.getElementById('folio-pct');
+  const running = document.getElementById('running-folio');
+  const sections = document.querySelectorAll('[data-chapter]');
+  function onScroll(){
+    const h = document.documentElement;
+    const pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+    progress.style.width = pct + '%';
+    if (folioPct) folioPct.textContent = Math.round(pct) + '%';
+    // Which chapter is most in view?
+    let cur = sections[0];
+    sections.forEach(s=>{
+      const r = s.getBoundingClientRect();
+      if (r.top < window.innerHeight/2) cur = s;
+    });
+    if (cur && running){
+      running.innerHTML = cur.dataset.chapter + '<br/>— <span class="d">' + Math.round(pct) + '%</span>';
+    }
+    // dark-mode margins during dossier
+    const dossier = document.getElementById('dossier');
+    if (dossier){
+      const r = dossier.getBoundingClientRect();
+      const inside = r.top < 80 && r.bottom > 120;
+      document.querySelectorAll('.margin').forEach(m=>m.classList.toggle('white', inside));
+    }
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+
+  // Reveal on scroll
+  const io = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{ if (e.isIntersecting) e.target.classList.add('in'); });
+  }, {threshold:0.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  apply();
+  window.parent.postMessage({type:'__edit_mode_available'}, '*');
+</script>
+</body>
+</html>
