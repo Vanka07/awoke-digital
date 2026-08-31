@@ -1,0 +1,10 @@
+# Vercel local project link
+.vercel
+
+# Environment / secrets
+.env
+.env.*
+*.pem
+
+# OS cruft
+.DS_Store

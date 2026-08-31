@@ -4,6 +4,17 @@
 <meta charset="utf-8" />
 <title>Awoke Digital — A specialist practice for enterprise systems.</title>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="Awoke Digital is a specialist practice for enterprise systems — ServiceNow development, cloud architecture, and digital transformation. Based in Dallas, TX.">
+<meta name="keywords" content="ServiceNow, cloud architecture, digital transformation, enterprise systems, Dallas, consulting">
+<meta property="og:title" content="Awoke Digital — A specialist practice for enterprise systems.">
+<meta property="og:description" content="ServiceNow development, cloud architecture, and digital transformation for teams that cannot afford failure.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://awokedigital.com">
+<meta property="og:image" content="https://awokedigital.com/favicon-512.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Awoke Digital — Enterprise Systems Specialist">
+<meta name="twitter:description" content="ServiceNow development, cloud architecture, and digital transformation for teams that cannot afford failure.">
+<meta name="twitter:image" content="https://awokedigital.com/favicon-512.png">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon-96.png" sizes="96x96" type="image/png">
 <link rel="icon" href="/favicon-48.png" sizes="48x48" type="image/png">  
@@ -104,7 +115,7 @@
   .contents ol li .pg{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.15em;color:var(--silver);}
 
   /* ====== MANIFESTO ====== */
-  .manifesto{padding:160px 88px;border-bottom:1px solid var(--line);}
+  .manifesto{padding:120px 88px 100px;border-bottom:1px solid var(--line);}
   .manifesto .chapter-mark{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--silver);margin-bottom:80px;display:flex;gap:18px;align-items:baseline;}
   .manifesto .chapter-mark .num{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:26px;color:var(--ink);letter-spacing:0;text-transform:none;font-weight:500;}
   .manifesto .body{max-width:1040px;margin:0 auto;text-align:center;}
@@ -115,7 +126,7 @@
   .manifesto .sig .mid{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:16px;color:var(--ink);letter-spacing:0;text-transform:none;}
 
   /* ====== PRACTICE (services) ====== */
-  .practice{padding:160px 0;border-bottom:1px solid var(--line);}
+  .practice{padding:120px 0;border-bottom:1px solid var(--line);}
   .practice .head{display:grid;grid-template-columns:240px 1fr;gap:80px;padding:0 88px;margin-bottom:100px;align-items:flex-end;}
   .practice .mark{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--silver);}
   .practice .mark .num{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:26px;color:var(--ink);letter-spacing:0;text-transform:none;font-weight:500;display:block;margin-bottom:14px;}
@@ -123,7 +134,7 @@
   .practice h2 em{font-style:italic;color:var(--silver);font-weight:500;}
 
   .practice .rows{border-top:1px solid var(--line-strong);}
-  .pr-row{display:grid;grid-template-columns:140px 1fr 380px 60px;gap:48px;padding:56px 88px;border-bottom:1px solid var(--line);align-items:flex-start;transition:background .6s ease,padding .5s cubic-bezier(.2,.8,.2,1);cursor:pointer;position:relative;}
+  .pr-row{display:grid;grid-template-columns:140px 1fr 380px 60px;gap:48px;padding:56px 88px;border-bottom:1px solid var(--line);align-items:flex-start;transition:background .6s ease,padding .5s cubic-bezier(.2,.8,.2,1);position:relative;}
   .pr-row:hover{background:var(--ivory-2);}
   .pr-row .n{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.25em;color:var(--silver);padding-top:10px;}
   .pr-row .t{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(36px, 3.6vw, 58px);letter-spacing:-.016em;line-height:1;margin:0;color:var(--ink);}
@@ -229,6 +240,52 @@
   #tweaks .seg button{background:transparent;border:none;padding:5px 10px;font-size:10px;font-family:'JetBrains Mono',monospace;color:var(--ink);cursor:pointer;border-radius:1px;text-transform:uppercase;letter-spacing:.1em;font-weight:500;}
   #tweaks .seg button.on{background:var(--ink);color:var(--ivory);}
 
+
+
+  /* Fix marginalia overlapping footer */
+  .margin.bl{transition:opacity .3s;}
+  .margin.bl.hidden{opacity:0;pointer-events:none;}
+
+  /* ====== HAMBURGER ====== */
+  .hamburger{display:none;background:none;border:none;cursor:pointer;padding:8px;z-index:50;}
+  .hamburger span{display:block;width:22px;height:1.5px;background:var(--ink);margin:5px 0;transition:all .3s ease;}
+  .hamburger.open span:nth-child(1){transform:rotate(45deg) translate(4px,5px);}
+  .hamburger.open span:nth-child(2){opacity:0;}
+  .hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(4px,-5px);}
+
+  .mobile-nav{display:none;flex-direction:column;gap:24px;padding:28px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--silver);border-bottom:1px solid var(--line);}
+  .mobile-nav.open{display:flex;}
+  .mobile-nav a{padding:8px 0;border-bottom:1px solid var(--line);transition:color .3s;}
+  .mobile-nav a:hover{color:var(--ink);}
+
+  @media (max-width:1100px){
+    .hamburger{display:block;}
+    .close-grid{gap:48px;}
+    .margin.bl{display:none;}
+  }
+
+  /* ====== SMALL PHONES ====== */
+  @media (max-width:600px){
+    .method .phases{grid-template-columns:1fr;}
+    .dossier .stats{grid-template-columns:1fr;}
+    .dossier .stats .s .n{font-size:40px;}
+    .close .email{font-size:22px;word-break:break-all;}
+    .contents ol li{grid-template-columns:40px 1fr;}
+    .contents ol li .pg{display:none;}
+    .colophon{grid-template-columns:1fr;}
+    .voice{padding:80px 28px;}
+    .voice blockquote{font-size:clamp(22px, 5vw, 30px);}
+    .manifesto{padding:80px 28px;}
+    .manifesto p.lead{font-size:clamp(24px, 5vw, 34px);}
+    .close{padding:80px 28px 60px;}
+    .close h2{font-size:clamp(40px, 10vw, 56px);}
+    .phase{min-height:auto;padding:32px 20px 40px;}
+    .cover .stage{padding:40px 20px;}
+    .cover h1{font-size:clamp(48px, 12vw, 64px);}
+    .cover .top-bar{padding:24px 20px 12px;}
+    .imprint-bar{font-size:9px;letter-spacing:.15em;}
+  }
+
   /* ====== REVEAL ON SCROLL ====== */
   .reveal{opacity:0;transform:translateY(16px);transition:opacity 1s cubic-bezier(.2,.8,.2,1), transform 1s cubic-bezier(.2,.8,.2,1);}
   .reveal.in{opacity:1;transform:translateY(0);}
@@ -275,7 +332,19 @@
         <a href="#method">Method</a>
         <a href="#close">Correspond</a>
       </nav>
+
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
     </div>
+
+  <nav class="mobile-nav" id="mobile-nav">
+    <a href="#contents">Contents</a>
+    <a href="#practice">Practice</a>
+    <a href="#dossier">Dossier</a>
+    <a href="#method">Method</a>
+    <a href="#close">Correspond</a>
+  </nav>
 
     <div class="stage">
       <div class="left">
@@ -310,12 +379,12 @@
     <div class="row">
       <div class="lbl">Table of Contents</div>
       <ol>
-        <li data-goto="#manifesto"><span class="t">A note on <em>how we work.</em></span><span class="pg">p. 03</span></li>
-        <li data-goto="#practice"><span class="t">The practice — <em>three disciplines.</em></span><span class="pg">p. 07</span></li>
-        <li data-goto="#dossier"><span class="t">Dossier — <em>a carrier consolidation.</em></span><span class="pg">p. 14</span></li>
-        <li data-goto="#method"><span class="t">Method — <em>four phases, no drift.</em></span><span class="pg">p. 22</span></li>
-        <li data-goto="#voice"><span class="t">Voice — <em>a client, on record.</em></span><span class="pg">p. 28</span></li>
-        <li data-goto="#close"><span class="t">Correspond — <em>a note to return.</em></span><span class="pg">p. 31</span></li>
+        <li data-goto="#manifesto" tabindex="0" role="button"><span class="t">A note on <em>how we work.</em></span><span class="pg">p. 03</span></li>
+        <li data-goto="#practice" tabindex="0" role="button"><span class="t">The practice — <em>three disciplines.</em></span><span class="pg">p. 07</span></li>
+        <li data-goto="#dossier" tabindex="0" role="button"><span class="t">Dossier — <em>a carrier consolidation.</em></span><span class="pg">p. 14</span></li>
+        <li data-goto="#method" tabindex="0" role="button"><span class="t">Method — <em>four phases, no drift.</em></span><span class="pg">p. 22</span></li>
+        <li data-goto="#voice" tabindex="0" role="button"><span class="t">Voice — <em>a client, on record.</em></span><span class="pg">p. 28</span></li>
+        <li data-goto="#close" tabindex="0" role="button"><span class="t">Correspond — <em>a note to return.</em></span><span class="pg">p. 31</span></li>
       </ol>
     </div>
   </section>
@@ -349,7 +418,7 @@
         <div class="n">I · 2018—</div>
         <h3 class="t">ServiceNow <em>development</em></h3>
         <div class="d">
-          End-to-end platform engineering. Workflows designed for the operators who use them, extended beyond ITSM into HR, security, and customer ops — with the discipline of someone who has cleaned up other people's instances.
+          End-to-end platform engineering for enterprises running 5,000+ seat instances. Workflows designed for the operators who use them, extended across ITSM, ITOM, SecOps, and HRSD — with the discipline of someone who has consolidated three instances into one and cut resolution times by 42%.
           <div class="under">
             <span>Workflow architecture · Flow Designer</span>
             <span>Custom scripting · Integration</span>
@@ -363,7 +432,7 @@
         <div class="n">II · 2020—</div>
         <h3 class="t">Cloud <em>architecture</em></h3>
         <div class="d">
-          AWS, Azure, GCP — designed with security, observability, and cost discipline from the first whiteboard. We migrate the workloads the internal team keeps putting off, and leave infrastructure the team can operate without us.
+          AWS, Azure, GCP — designed with security, observability, and cost discipline from the first whiteboard. We migrate the workloads the internal team keeps putting off, and leave infrastructure the team can operate without us. 20+ production integrations delivered, zero unplanned downtime.
           <div class="under">
             <span>Landing zones · Infrastructure-as-code</span>
             <span>Migration · Modernization</span>
@@ -377,7 +446,7 @@
         <div class="n">III · 2022—</div>
         <h3 class="t">Digital <em>transformation</em></h3>
         <div class="d">
-          Process mapping, system consolidation, and change management for organisations whose legacy systems have outlived their usefulness. We lead from whiteboard to go-live, and we don't pretend the hard part is the technology.
+          Process mapping, system consolidation, and change management for organisations whose legacy systems have outlived their usefulness. We lead from whiteboard to go-live — and we don't pretend the hard part is the technology. Average adoption rate: 25% above baseline within 90 days.
           <div class="under">
             <span>Discovery · Roadmapping</span>
             <span>Vendor selection · RFP</span>
@@ -493,7 +562,7 @@
       and an honest handover to our internal team.
     </blockquote>
     <div class="attribution">
-      <span class="n">M. Rodriguez</span> &nbsp;·&nbsp; VP Technology &nbsp;·&nbsp; Regional Carrier (on file)
+      <span class="n">M. Rodriguez</span> &nbsp;·&nbsp; VP Technology &nbsp;·&nbsp; North American Carrier
     </div>
   </section>
 
@@ -515,7 +584,7 @@
         </div>
         <div class="dl">
           <div class="k">Correspondence</div>
-          <div class="v">+1 (214) 207-0261<br/>Mon — Fri · 9h—18h CT</div>
+          <div class="v">+1 (214) 207-0261<br/>Mon — Fri · 9 AM — 6 PM CT</div>
         </div>
         <div class="dl">
           <div class="k">Studio</div>
@@ -629,7 +698,52 @@
     btn.addEventListener('click', ()=>{
       const key = btn.parentElement.dataset.key;
       state[key] = btn.dataset.val;
-      apply();
+    
+
+  // Hide bottom-left marginalia near footer
+  const marginBlEl = document.querySelector('.margin.bl');
+  const imprintBarEl = document.querySelector('.imprint-bar');
+  function checkMarginOverlap() {
+    if (marginBlEl && imprintBarEl) {
+      const iRect = imprintBarEl.getBoundingClientRect();
+      if (iRect.top < window.innerHeight) {
+        marginBlEl.classList.add('hidden');
+      } else {
+        marginBlEl.classList.remove('hidden');
+      }
+    }
+  }
+  window.addEventListener('scroll', checkMarginOverlap, {passive:true});
+  checkMarginOverlap();
+
+
+  // TOC keyboard accessibility
+  document.querySelectorAll('.contents ol li').forEach(li => {
+    li.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        const target = document.querySelector(li.dataset.goto);
+        if (target) target.scrollIntoView({behavior:'smooth', block:'start'});
+      }
+    });
+  });
+
+  // Hamburger menu
+  const hamburgerBtn = document.getElementById('hamburger');
+  const mobileNav = document.getElementById('mobile-nav');
+  if (hamburgerBtn && mobileNav) {
+    hamburgerBtn.addEventListener('click', () => {
+      hamburgerBtn.classList.toggle('open');
+      mobileNav.classList.toggle('open');
+    });
+    mobileNav.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        hamburgerBtn.classList.remove('open');
+        mobileNav.classList.remove('open');
+      });
+    });
+  }
+  apply();
       window.parent.postMessage({type:'__edit_mode_set_keys', edits:{[key]: state[key]}}, '*');
     });
   });
@@ -685,6 +799,51 @@
   }, {threshold:0.12});
   document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
+
+
+  // Hide bottom-left marginalia near footer
+  const marginBlEl = document.querySelector('.margin.bl');
+  const imprintBarEl = document.querySelector('.imprint-bar');
+  function checkMarginOverlap() {
+    if (marginBlEl && imprintBarEl) {
+      const iRect = imprintBarEl.getBoundingClientRect();
+      if (iRect.top < window.innerHeight) {
+        marginBlEl.classList.add('hidden');
+      } else {
+        marginBlEl.classList.remove('hidden');
+      }
+    }
+  }
+  window.addEventListener('scroll', checkMarginOverlap, {passive:true});
+  checkMarginOverlap();
+
+
+  // TOC keyboard accessibility
+  document.querySelectorAll('.contents ol li').forEach(li => {
+    li.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        const target = document.querySelector(li.dataset.goto);
+        if (target) target.scrollIntoView({behavior:'smooth', block:'start'});
+      }
+    });
+  });
+
+  // Hamburger menu
+  const hamburgerBtn = document.getElementById('hamburger');
+  const mobileNav = document.getElementById('mobile-nav');
+  if (hamburgerBtn && mobileNav) {
+    hamburgerBtn.addEventListener('click', () => {
+      hamburgerBtn.classList.toggle('open');
+      mobileNav.classList.toggle('open');
+    });
+    mobileNav.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        hamburgerBtn.classList.remove('open');
+        mobileNav.classList.remove('open');
+      });
+    });
+  }
   apply();
   window.parent.postMessage({type:'__edit_mode_available'}, '*');
 </script>
