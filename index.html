@@ -59,7 +59,8 @@
     background-size:4px 4px, 6px 6px, 8px 8px;}
 
   /* ====== RUNNING MARGINALIA (fixed corners) ====== */
-  .margin{position:fixed;z-index:40;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--silver);pointer-events:none;mix-blend-mode:multiply;}
+  .margin{position:fixed;z-index:40;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--silver);pointer-events:none;mix-blend-mode:multiply;transition:opacity .3s;}
+  .margin.hidden{opacity:0;}
   .margin.tl{top:24px;left:28px;}
   .margin.tr{top:24px;right:28px;text-align:right;}
   .margin.bl{bottom:24px;left:28px;line-height:1.9;}
@@ -149,20 +150,29 @@
   .dossier h2 em{font-style:italic;color:var(--silver-300);font-weight:500;}
 
   .dossier .case{padding:0 88px;display:grid;grid-template-columns:1fr 1fr;gap:80px;position:relative;z-index:1;}
-  .dossier .visual{position:relative;aspect-ratio:5/6;border:1px solid rgba(244,241,233,.14);overflow:hidden;display:flex;align-items:center;justify-content:center;padding:56px;}
+  .dossier .visual{position:relative;aspect-ratio:5/6;border:1px solid rgba(244,241,233,.14);overflow:hidden;display:flex;align-items:stretch;padding:92px 32px 36px;}
   .dossier .visual::before{content:"";position:absolute;top:0;left:0;right:0;height:32px;background:repeating-linear-gradient(90deg, #f4f1e9 0 24px, #14181f 24px 48px);opacity:.8;}
   .dossier .visual .folio{position:absolute;top:52px;left:20px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.25em;color:var(--silver-300);text-transform:uppercase;}
-  .dossier .visual .cls{position:absolute;top:52px;right:20px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.25em;color:#d99058;border:1px solid #d99058;padding:2px 8px;}
-  .dossier .visual svg{width:100%;max-width:420px;position:relative;z-index:1;margin-top:40px;}
-  .dossier .meta{display:flex;flex-direction:column;justify-content:space-between;padding:20px 0;}
+  .dossier .visual .cls{position:absolute;top:52px;right:20px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.25em;color:rgba(244,241,233,.85);border:1px solid rgba(244,241,233,.55);padding:2px 8px;}
+  .dossier .visual .exhibit{margin:0;width:100%;height:100%;display:flex;flex-direction:column;justify-content:space-between;position:relative;z-index:1;}
+  .dossier .visual .ex-inst{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;}
+  .dossier .visual .ex-inst li{display:flex;align-items:baseline;gap:16px;padding:13px 0;}
+  .dossier .visual .ex-inst .idx{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.22em;color:var(--silver-300);}
+  .dossier .visual .ex-inst .rule{flex:1;height:0;border-bottom:1px solid rgba(244,241,233,.2);align-self:center;}
+  .dossier .visual .ex-inst .nm{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;font-size:28px;letter-spacing:-.01em;color:var(--ivory);}
+  .dossier .visual .ex-join{display:flex;align-items:center;justify-content:center;gap:18px;padding:20px 0 16px;font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;font-size:32px;letter-spacing:-.02em;color:var(--ivory);}
+  .dossier .visual .ex-join::before,.dossier .visual .ex-join::after{content:"";width:32px;height:1px;background:var(--blue);}
+  .dossier .visual .ex-plat{border:1px solid rgba(244,241,233,.28);background:rgba(244,241,233,.04);padding:26px 24px 22px;}
+  .dossier .visual .ex-plat .plat-k{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--silver-300);margin-bottom:20px;}
+  .dossier .visual .ex-proof{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;padding-top:20px;border-top:1px solid rgba(244,241,233,.16);}
+  .dossier .visual .ex-proof .n{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(30px, 3.6vw, 46px);letter-spacing:-.02em;line-height:1;color:var(--ivory);font-variant-numeric:tabular-nums;}
+  .dossier .visual .ex-proof .n em{font-style:italic;color:var(--silver-300);font-weight:500;}
+  .dossier .visual .ex-proof .l{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--silver-300);margin-top:10px;line-height:1.45;}
+  .dossier .meta{display:flex;flex-direction:column;justify-content:flex-start;padding:52px 0 20px;}
   .dossier .meta .engage{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--silver-300);margin-bottom:36px;}
   .dossier .meta h3{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(38px, 3.8vw, 58px);line-height:1.06;letter-spacing:-.015em;margin:0 0 28px;color:var(--ivory);}
   .dossier .meta h3 em{font-style:italic;color:var(--silver-300);font-weight:500;}
-  .dossier .meta .note{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:20px;line-height:1.6;color:var(--silver-300);margin:0 0 48px;max-width:42ch;}
-  .dossier .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;padding-top:40px;border-top:1px solid rgba(244,241,233,.16);}
-  .dossier .stats .s .n{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:56px;letter-spacing:-.02em;line-height:1;color:var(--ivory);font-variant-numeric:tabular-nums;}
-  .dossier .stats .s .n em{font-style:italic;color:var(--silver-300);font-weight:500;}
-  .dossier .stats .s .l{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--silver-300);margin-top:12px;line-height:1.5;}
+  .dossier .meta .note{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:20px;line-height:1.6;color:var(--silver-300);margin:0;max-width:42ch;}
 
   .dossier .run{padding:80px 88px 0;display:flex;justify-content:space-between;align-items:center;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:var(--silver);position:relative;z-index:1;}
 
@@ -223,10 +233,6 @@
   /* ====== SCROLL PROGRESS ====== */
   #progress{position:fixed;top:0;left:0;height:1px;background:var(--ink);width:0;z-index:45;transition:width .1s linear;}
 
-  /* Fix marginalia overlapping footer */
-  .margin.bl{transition:opacity .3s;}
-  .margin.bl.hidden{opacity:0;pointer-events:none;}
-
   /* ====== HAMBURGER (overlay — does not shove the stage/H1) ====== */
   .hamburger{display:none;position:absolute;top:28px;right:20px;z-index:51;background:none;border:none;cursor:pointer;padding:8px;}
   .hamburger span{display:block;width:22px;height:1.5px;background:var(--ink);margin:5px 0;transition:all .3s ease;}
@@ -242,8 +248,11 @@
   /* ====== SMALL PHONES ====== */
   @media (max-width:600px){
     .method .phases{grid-template-columns:1fr;}
-    .dossier .stats{grid-template-columns:1fr;}
-    .dossier .stats .s .n{font-size:40px;}
+    .dossier .visual{aspect-ratio:auto;min-height:0;padding:80px 22px 28px;}
+    .dossier .visual .ex-inst li{padding:12px 0;}
+    .dossier .visual .ex-inst .nm{font-size:24px;}
+    .dossier .visual .ex-join{font-size:26px;padding:16px 0 12px;}
+    .dossier .visual .ex-proof .n{font-size:32px;}
     .close .email{font-size:22px;word-break:break-all;}
     .contents ol li{grid-template-columns:40px 1fr;}
     .colophon{grid-template-columns:1fr;}
@@ -281,6 +290,8 @@
     .pr-row{grid-template-columns:60px 1fr;gap:20px;padding:32px 28px;}
     .pr-row .d{grid-column:1 / -1;}
     .dossier .case{grid-template-columns:1fr;gap:48px;}
+    .dossier .visual{aspect-ratio:auto;}
+    .dossier .visual .exhibit{height:auto;}
     .method .phases{grid-template-columns:1fr 1fr;}
     .colophon{grid-template-columns:1fr 1fr;gap:28px;}
     .margin.tr, .margin.br{display:none;}
@@ -439,50 +450,37 @@
       <div class="visual">
         <div class="folio">FILE 001 · 2026</div>
         <div class="cls">RESOLVED</div>
-        <svg viewBox="0 0 400 360" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="ln" x1="0" x2="1" y1="0" y2="0">
-              <stop offset="0%" stop-color="#3a8bd6" stop-opacity="0"/>
-              <stop offset="100%" stop-color="#3a8bd6" stop-opacity="1"/>
-            </linearGradient>
-          </defs>
-          <g stroke="rgba(160,174,192,.14)" stroke-width="0.5">
-            <line x1="0" y1="60" x2="400" y2="60"/>
-            <line x1="0" y1="130" x2="400" y2="130"/>
-            <line x1="0" y1="200" x2="400" y2="200"/>
-            <line x1="0" y1="270" x2="400" y2="270"/>
-          </g>
-          <!-- before -->
-          <path d="M10 100 L80 120 L160 170 L240 200 L320 230 L390 250" fill="none" stroke="#a0aec0" stroke-width="1" stroke-dasharray="3 5"/>
-          <!-- after -->
-          <path d="M10 270 L80 220 L160 170 L240 110 L320 70 L390 40" fill="none" stroke="url(#ln)" stroke-width="2"/>
-          <g fill="#3a8bd6">
-            <circle cx="10" cy="270" r="2.5"/><circle cx="80" cy="220" r="2.5"/>
-            <circle cx="160" cy="170" r="2.5"/><circle cx="240" cy="110" r="2.5"/>
-            <circle cx="320" cy="70" r="2.5"/><circle cx="390" cy="40" r="3.5"/>
-          </g>
-          <g font-family="JetBrains Mono,monospace" font-size="9" fill="#a0aec0" letter-spacing="2">
-            <text x="10" y="320">Q1</text><text x="80" y="320">Q2</text>
-            <text x="160" y="320">Q3</text><text x="240" y="320">Q4</text>
-            <text x="320" y="320">Q5</text><text x="380" y="320">Q6</text>
-          </g>
-          <g font-family="Cormorant Garamond,serif" font-style="italic" font-size="13" fill="#a0aec0">
-            <text x="10" y="50">Incident resolution, post-consolidation</text>
-          </g>
-        </svg>
+        <figure class="exhibit">
+          <ul class="ex-inst">
+            <li><span class="idx">01</span><span class="rule" aria-hidden="true"></span><span class="nm">Instance</span></li>
+            <li><span class="idx">02</span><span class="rule" aria-hidden="true"></span><span class="nm">Instance</span></li>
+            <li><span class="idx">03</span><span class="rule" aria-hidden="true"></span><span class="nm">Instance</span></li>
+          </ul>
+          <div class="ex-join" aria-hidden="true">3 → 1</div>
+          <div class="ex-plat">
+            <div class="plat-k">One shared platform</div>
+            <div class="ex-proof">
+              <div class="p">
+                <div class="n"><em>−</em>42<em>%</em></div>
+                <div class="l">Mean resolution time</div>
+              </div>
+              <div class="p">
+                <div class="n">180</div>
+                <div class="l">Custom workflows migrated</div>
+              </div>
+              <div class="p">
+                <div class="n">14<em>w</em></div>
+                <div class="l">Discovery to go-live</div>
+              </div>
+            </div>
+          </div>
+        </figure>
       </div>
 
       <div class="meta">
-        <div>
-          <div class="engage">Engagement · Carrier Operations · 14 weeks</div>
-          <h3>Three instances, <em>one platform,</em> 180 workflows migrated.</h3>
-          <p class="note">A North American carrier ran three disconnected ServiceNow instances across its regional business units — duplicate catalogs, inconsistent incident SLAs, no shared reporting. We designed the consolidation, migrated the custom work, retired two legacy instances, and handed the operators a single shared platform.</p>
-        </div>
-        <div class="stats">
-          <div class="s"><div class="n"><em>−</em>42<em>%</em></div><div class="l">Mean resolution time</div></div>
-          <div class="s"><div class="n">180<em>+</em></div><div class="l">Custom workflows migrated</div></div>
-          <div class="s"><div class="n">14<em>w</em></div><div class="l">Discovery to go-live</div></div>
-        </div>
+        <div class="engage">Engagement · Carrier Operations · 14 weeks</div>
+        <h3>Three instances, <em>one platform,</em> 180 workflows migrated.</h3>
+        <p class="note">A North American carrier ran three disconnected ServiceNow instances across its regional business units — duplicate catalogs, inconsistent incident SLAs, no shared reporting. We designed the consolidation, migrated the custom work, retired two legacy instances, and handed the operators a single shared platform.</p>
       </div>
     </div>
 
@@ -589,21 +587,8 @@
   </div>
 
 <script>
-  // Hide bottom-left marginalia near footer
   const marginBlEl = document.querySelector('.margin.bl');
   const imprintBarEl = document.querySelector('.imprint-bar');
-  function checkMarginOverlap() {
-    if (marginBlEl && imprintBarEl) {
-      const iRect = imprintBarEl.getBoundingClientRect();
-      if (iRect.top < window.innerHeight) {
-        marginBlEl.classList.add('hidden');
-      } else {
-        marginBlEl.classList.remove('hidden');
-      }
-    }
-  }
-  window.addEventListener('scroll', checkMarginOverlap, {passive:true});
-  checkMarginOverlap();
 
   // TOC click + keyboard
   document.querySelectorAll('.contents ol li').forEach(li => {
@@ -660,6 +645,18 @@
       const r = dossier.getBoundingClientRect();
       const inside = r.top < 80 && r.bottom > 120;
       document.querySelectorAll('.margin').forEach(m=>m.classList.toggle('white', inside));
+    }
+    const vis = document.querySelector('#dossier .visual');
+    let coverExhibit = false;
+    if (vis){
+      const vr = vis.getBoundingClientRect();
+      coverExhibit = vr.bottom > 48 && vr.top < window.innerHeight - 24;
+    }
+    const marginTl = document.querySelector('.margin.tl');
+    if (marginTl) marginTl.classList.toggle('hidden', coverExhibit);
+    if (marginBlEl && imprintBarEl){
+      const footer = imprintBarEl.getBoundingClientRect().top < window.innerHeight;
+      marginBlEl.classList.toggle('hidden', coverExhibit || footer);
     }
   }
   window.addEventListener('scroll', onScroll, {passive:true});
